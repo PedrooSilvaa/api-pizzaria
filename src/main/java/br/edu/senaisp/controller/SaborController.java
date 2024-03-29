@@ -62,11 +62,34 @@ public class SaborController extends HttpServlet {
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		int id = Integer.parseInt(req.getParameter("id"));
+		
+		BufferedReader br = req.getReader();
+		
+		String json = "";
+		String linha = "";
+		
+		while ((linha = br.readLine()) != null) {
+			json += linha;
+		}
+		
+		Gson gson = new Gson();
+		Sabor sabor = gson.fromJson(json, Sabor.class);
+
+		sabor.setId(id);
+		SaborDao dao = new SaborDao();
+		dao.Update(sabor);
+
+		resp.getWriter().append("funfou");
+		
 	}
 	
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		int id = Integer.parseInt(req.getParameter("id"));
 		
+		SaborDao dao = new SaborDao();
+		dao.Delete(id);
 	}
 	
 	
