@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 
-@WebServlet(urlPatterns = "/projeto")
+@WebServlet(urlPatterns = "/sabor")
 public class SaborController extends HttpServlet {
 
 	@Override
